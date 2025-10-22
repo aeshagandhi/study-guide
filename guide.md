@@ -245,12 +245,53 @@ Model:
 ---
 
 ### 5️⃣ Model Assessment
-**Coefficient of Determination (R²):**  
-`R² = 1 − (RSS / TSS)` → proportion of variance in Y explained by model.
+### R² — Coefficient of Determination
 
-**Adjusted R²:**  
-`R²_adj = 1 − (1 − R²) * ((n − 1)/(n − p − 1))`  
-Penalizes extra predictors.
+**Definition:**  
+R² represents the **proportion of total variation in Y explained by the model**.
+
+**Formula:**  
+`R² = 1 − (RSS / TSS)`  
+where:
+- RSS = Residual Sum of Squares = unexplained variation  
+- TSS = Total Sum of Squares = total variation in Y  
+
+**Interpretation:**  
+- R² = 0 → model explains none of the variation (no better than the mean).  
+- R² = 1 → model perfectly explains all variation in Y.  
+- R² = 0.70 → 70% of the variability in Y is explained by X.
+
+**Properties:**
+- R² **always increases (or stays the same)** when you add more predictors — even if they’re irrelevant.  
+- Hence, R² can **overestimate** the quality of a model.
+
+**Bounds:**
+- `0 ≤ R² ≤ 1` in most contexts (for models with an intercept).  
+- In some rare cases (no intercept or bad fit), R² can be slightly negative.
+
+---
+
+### Adjusted R² — Penalized Version of R²
+
+**Definition:**  
+Adjusted R² adjusts R² for the **number of predictors** in the model and the **sample size**, to prevent overfitting.
+Penalize adding predictors that don't improve model sufficiently.
+
+**Formula:**  
+`Adjusted R² = 1 − (1 − R²) * ((n − 1) / (n − p − 1))`
+
+where:
+- n = number of observations  
+- p = number of predictors (excluding intercept)
+
+**Interpretation:**  
+- Adjusted R² tells you the proportion of variance explained **after accounting for model complexity**.  
+- It increases only if a new predictor improves the model **more than expected by chance**.  
+- It can **decrease** when adding predictors that don’t meaningfully improve fit.
+
+**Bounds:**
+- Adjusted R² can be **negative** if the model fits worse than just using the mean of Y.  
+- Upper bound is **1**, same as R².
 
 **Interpretation:**  
 - High R² means more variance explained but not necessarily better fit.  
