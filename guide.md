@@ -39,6 +39,26 @@
 - **Normal:** continuous, symmetric “bell curve,” defined by mean μ and variance σ².  
 - For large n, Binomial ≈ Normal with μ = np, σ² = np(1−p).
 
+### 📊 Summary Table
+
+| Distribution | Type | Parameters | Support (Range) | Expected Value (E[X]) | Variance (Var[X]) | Typical Use Case |
+|---------------|-------|-------------|------------------|------------------------|-------------------|------------------|
+| **Bernoulli** | Discrete | p ∈ [0,1] | x ∈ {0,1} | p | p(1 − p) | Single binary outcome (success/failure) |
+| **Binomial** | Discrete | n (trials), p (success prob) | x ∈ {0,1,…,n} | np | np(1 − p) | # of successes in n independent trials |
+| **Geometric** | Discrete | p ∈ (0,1) | x ∈ {1,2,3,…} | 1/p | (1 − p)/p² | # of trials until first success |
+| **Poisson** | Discrete | λ > 0 | x ∈ {0,1,2,…} | λ | λ | Count of events in fixed time/space |
+| **Uniform (Discrete)** | Discrete | k equally likely values | x ∈ {1,…,k} | (k + 1)/2 | (k² − 1)/12 | Equal likelihood categorical outcomes |
+| **Uniform (Continuous)** | Continuous | a, b (bounds) | x ∈ [a,b] | (a + b)/2 | (b − a)² / 12 | Random real number in interval [a,b] |
+| **Normal (Gaussian)** | Continuous | μ (mean), σ² (variance) | x ∈ ℝ | μ | σ² | Many natural phenomena; CLT limit |
+| **Exponential** | Continuous | λ > 0 | x ≥ 0 | 1/λ | 1/λ² | Time between Poisson events |
+| **Gamma** | Continuous | α (shape), β (rate) | x ≥ 0 | α/β | α/β² | Sum of exponential variables |
+| **Beta** | Continuous | α > 0, β > 0 | x ∈ [0,1] | α/(α + β) | (αβ)/[(α + β)²(α + β + 1)] | Probabilities constrained between 0 and 1 |
+| **Chi-Square (χ²)** | Continuous | k (degrees of freedom) | x ≥ 0 | k | 2k | Variance estimates, hypothesis tests |
+| **t (Student’s t)** | Continuous | ν (degrees of freedom) | x ∈ ℝ | 0 | ν/(ν − 2), ν>2 | Mean estimates with small samples |
+| **F** | Continuous | d₁, d₂ (degrees of freedom) | x ≥ 0 | d₂/(d₂ − 2) (if d₂>2) | *Var depends on df* | Comparing variances, ANOVA, regression F-tests |
+
+---
+
 ---
 
 ### 5️⃣ Sampling Distributions & Central Limit Theorem
