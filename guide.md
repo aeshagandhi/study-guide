@@ -99,9 +99,98 @@ MLEs are consistent, unbiased (as n→∞), and efficient.
 3. Compute p-value = Pr(data or more extreme | H₀).  
 4. Reject H₀ if p < α (usually 0.05).  
 
-**Parametric:** assumes known distribution (t-test).  
-**Simulation-based:** permutation or bootstrap test.  
-**Paired vs Independent:** within- vs across-sample comparisons.
+## 📍 Inference and Hypothesis Testing Overview
+
+Statistical inference helps us draw conclusions about populations using sample data.  
+Depending on what we know (e.g., population variance, distributional assumptions, or sample design), we use **different inference methods**.
+
+---
+
+### 🔹 1️⃣ Z-Test vs. T-Test
+
+Both the **z-test** and **t-test** are used to compare means or test hypotheses about population parameters.  
+They differ mainly in what is **known** and **assumed** about the population variance (σ²) and sample size.
+
+| Feature | **Z-Test** | **T-Test** |
+|----------|-------------|------------|
+| **Purpose** | Compare means (large samples or known σ) | Compare means (small samples, σ unknown) |
+| **Population SD (σ)** | Known | Unknown (estimated from sample as s) |
+| **Test Statistic** | `z = (x̄ − μ₀) / (σ / √n)` | `t = (x̄ − μ₀) / (s / √n)` |
+| **Distribution Used** | Standard Normal (Z ~ N(0,1)) | Student’s t with (n−1) df |
+| **Sample Size** | Large (n ≥ 30) | Small or moderate (n < 30) |
+| **Assumptions** | Data ~ Normal or large n (by CLT) | Data ~ Normal or nearly Normal |
+| **Shape of Sampling Dist.** | Fixed (does not depend on n) | Heavier tails (accounts for more uncertainty) |
+| **As n increases** | Z always same | T → Z (they converge) |
+
+**When to use each:**
+- ✅ **Z-test** → population SD known or sample very large.  
+- ✅ **T-test** → population SD unknown (use sample SD); works for small or moderate n.
+
+**Example Scenarios:**
+| Scenario | Use | Reason |
+|-----------|-----|--------|
+| Testing average SAT score with known σ = 100 | Z-test | σ known |
+| Comparing mean GPA of 25 students (σ unknown) | T-test | σ estimated from sample |
+| Comparing average income between two independent groups | Two-sample T-test | σ unknown |
+| Comparing mean score before vs after intervention (same students) | Paired T-test | σ unknown, dependent samples |
+| Testing proportion of defective parts in a large batch | Z-test for proportions | large n, known binomial SE formula |
+
+---
+
+### 🔹 2️⃣ Parametric vs. Simulation-Based Inference
+
+There are two broad approaches to statistical inference — **parametric** and **simulation-based** — that differ in how they model uncertainty.
+
+| Feature | **Parametric Inference** | **Simulation-Based Inference** |
+|----------|--------------------------|--------------------------------|
+| **Basis** | Theoretical probability distributions (e.g., Normal, t, χ², F) | Data-driven resampling (no distribution assumptions) |
+| **Examples** | t-test, z-test, ANOVA, regression inference | Bootstrap CIs, permutation (randomization) tests |
+| **Assumptions** | Known or assumed sampling distribution | Minimal assumptions; rely on the data itself |
+| **Computation** | Analytical formulas (uses standard errors) | Computational — simulate or resample repeatedly |
+| **When to Use** | When population model and assumptions are reasonable | When sample size small, distribution unknown, or statistic complex |
+| **Output** | Theoretical p-values, confidence intervals | Empirical p-values or bootstrap confidence intervals |
+
+**Intuition:**  
+- **Parametric inference** = theoretical; relies on math formulas and distribution assumptions.  
+- **Simulation-based inference** = empirical; approximates the sampling distribution by resampling from the observed data.  
+
+**Examples:**
+- **t-test:** parametric method using the t-distribution.  
+- **Permutation test:** shuffle group labels under H₀ and recompute statistic many times.  
+- **Bootstrap CI:** resample (with replacement) to estimate variability of the statistic.
+
+---
+
+### 🔹 3️⃣ Paired vs. Independent Samples
+
+A **two-sample test** compares means or medians between two groups.  
+Which test you use depends on whether the samples are **independent** or **paired (dependent)**.
+
+| Situation | **Relationship Between Samples** | **Appropriate Test** | **Example** |
+|------------|----------------------------------|----------------------|--------------|
+| **Independent Samples** | Observations in one group are completely unrelated to those in the other | Independent Two-Sample T-Test (or Welch’s T-Test if unequal variances) | Compare average GPA of students in two different classes |
+| **Dependent / Paired Samples** | Same individuals measured twice, or matched pairs (twins, before-after) | Paired T-Test (based on differences within pairs) | Compare blood pressure before vs after medication for same patients |
+| **Nonparametric Alternative (small n / non-normal)** | May use Wilcoxon Rank-Sum (independent) or Wilcoxon Signed-Rank (paired) | Nonparametric Test | Compare median scores for skewed data |
+
+**Key Concepts:**
+- **Independent test:** between-subject design → differences across groups.  
+- **Paired test:** within-subject design → differences within the same individuals.  
+- Pairing reduces variability because each subject serves as their own control.
+
+---
+
+### 🧠 Quick Conceptual Summary
+
+| Concept | Definition | Example / Key Idea |
+|----------|-------------|--------------------|
+| **Z-Test** | Used when σ known or large n | Compare sample mean to population mean (known σ) |
+| **T-Test** | Used when σ unknown | Compare means with estimated variance |
+| **Parametric Inference** | Based on theoretical distributions | t-test, ANOVA, regression F-test |
+| **Simulation-Based Inference** | Uses data resampling instead of assumptions | Permutation or bootstrap tests |
+| **Paired Test** | Same individuals measured twice | Before–after, matched pairs |
+| **Independent Test** | Two unrelated groups | Two-sample comparison |
+
+---
 
 ---
 
