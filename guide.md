@@ -89,6 +89,8 @@ MLEs are consistent, unbiased (as n→∞), and efficient.
 - **Analytical CI:** uses formulas (e.g., `x̄ ± z * s/√n`)  
 - **Bootstrap CI:** obtained via resampling.
 
+![success](Ci.png)
+
 ---
 
 ### 8️⃣ Hypothesis Testing
